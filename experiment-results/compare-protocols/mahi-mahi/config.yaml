@@ -1,0 +1,21 @@
+name: mahi-mahi
+committee_size: 7
+latency_min_ms: 50
+latency_max_ms: 100
+topology: fullMesh
+duration_secs: 30
+rng_seed: 0
+replica_parameters:
+  dag:
+    round_timeout: null
+    max_block_size: 4194304
+    enable_synchronizer: false
+    fsync: false
+  consensus:
+    protocol: mahiMahi
+    leader_count: 2
+    wave_length: 4
+load_generator:
+  load: 100
+  transaction_size: 512
+  initial_delay: 0s

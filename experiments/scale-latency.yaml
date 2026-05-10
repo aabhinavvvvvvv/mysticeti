@@ -1,0 +1,60 @@
+# Experiment 4: Latency vs Network Delay
+# Runs Mysticeti with increasing link latency: 10ms, 50ms, 100ms, 200ms, 400ms.
+# The paper claims commit latency = 1.5 × RTT (3 rounds × 0.5 RTT per round).
+# If true, commit latency should scale linearly with link latency.
+# This experiment verifies that claim empirically.
+#
+# Run with:
+#   cargo run --release --bin replica -- simulate \
+#     --config-path experiments/scale-latency.yaml \
+#     --output-dir experiment-results/scale-latency/
+
+- name: 10ms link (LAN)
+  committee_size: 7
+  duration_secs: 30
+  latency_min_ms: 5
+  latency_max_ms: 10
+  load_generator:
+    load: 100
+    transaction_size: 512
+    initial_delay: 0s
+
+- name: 50ms link (regional)
+  committee_size: 7
+  duration_secs: 30
+  latency_min_ms: 25
+  latency_max_ms: 50
+  load_generator:
+    load: 100
+    transaction_size: 512
+    initial_delay: 0s
+
+- name: 100ms link (intercontinental)
+  committee_size: 7
+  duration_secs: 30
+  latency_min_ms: 50
+  latency_max_ms: 100
+  load_generator:
+    load: 100
+    transaction_size: 512
+    initial_delay: 0s
+
+- name: 200ms link (poor WAN)
+  committee_size: 7
+  duration_secs: 30
+  latency_min_ms: 100
+  latency_max_ms: 200
+  load_generator:
+    load: 100
+    transaction_size: 512
+    initial_delay: 0s
+
+- name: 400ms link (very poor WAN)
+  committee_size: 7
+  duration_secs: 30
+  latency_min_ms: 200
+  latency_max_ms: 400
+  load_generator:
+    load: 100
+    transaction_size: 512
+    initial_delay: 0s

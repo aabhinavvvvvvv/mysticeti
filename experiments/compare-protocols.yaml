@@ -1,0 +1,77 @@
+# Experiment 1: All 5 protocols compared under identical conditions
+# Same committee size, same network, same duration — only the protocol changes.
+# This directly shows the latency/throughput tradeoff between protocols.
+#
+# Run with:
+#   cargo run --release --bin replica -- simulate \
+#     --config-path experiments/compare-protocols.yaml \
+#     --output-dir experiment-results/compare-protocols/
+
+- name: mysticeti
+  committee_size: 7
+  duration_secs: 30
+  latency_min_ms: 50
+  latency_max_ms: 100
+  load_generator:
+    load: 100
+    transaction_size: 512
+    initial_delay: 0s
+  replica_parameters:
+    consensus:
+      protocol: mysticeti
+      leader_count: 2
+
+- name: mahi-mahi
+  committee_size: 7
+  duration_secs: 30
+  latency_min_ms: 50
+  latency_max_ms: 100
+  load_generator:
+    load: 100
+    transaction_size: 512
+    initial_delay: 0s
+  replica_parameters:
+    consensus:
+      protocol: mahiMahi
+      leader_count: 2
+      wave_length: 4
+
+- name: cordial-miners-sync
+  committee_size: 7
+  duration_secs: 30
+  latency_min_ms: 50
+  latency_max_ms: 100
+  load_generator:
+    load: 100
+    transaction_size: 512
+    initial_delay: 0s
+  replica_parameters:
+    consensus:
+      protocol: cordialMinersPartiallySynchronous
+
+- name: cordial-miners-async
+  committee_size: 7
+  duration_secs: 30
+  latency_min_ms: 50
+  latency_max_ms: 100
+  load_generator:
+    load: 100
+    transaction_size: 512
+    initial_delay: 0s
+  replica_parameters:
+    consensus:
+      protocol: cordialMinersAsynchronous
+
+- name: odontoceti
+  committee_size: 7
+  duration_secs: 30
+  latency_min_ms: 50
+  latency_max_ms: 100
+  load_generator:
+    load: 100
+    transaction_size: 512
+    initial_delay: 0s
+  replica_parameters:
+    consensus:
+      protocol: odontoceti
+      leader_count: 2

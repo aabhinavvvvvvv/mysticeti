@@ -1,0 +1,59 @@
+# Experiment 3: Latency vs Committee Size
+# Runs Mysticeti with 4, 7, 10, 13, 16 nodes under identical conditions.
+# Shows how latency and throughput scale as more validators join.
+# DAG-based consensus should scale much better than traditional BFT.
+#
+# Run with:
+#   cargo run --release --bin replica -- simulate \
+#     --config-path experiments/scale-committee.yaml \
+#     --output-dir experiment-results/scale-committee/
+
+- name: 4 nodes
+  committee_size: 4
+  duration_secs: 30
+  latency_min_ms: 50
+  latency_max_ms: 100
+  load_generator:
+    load: 100
+    transaction_size: 512
+    initial_delay: 0s
+
+- name: 7 nodes
+  committee_size: 7
+  duration_secs: 30
+  latency_min_ms: 50
+  latency_max_ms: 100
+  load_generator:
+    load: 100
+    transaction_size: 512
+    initial_delay: 0s
+
+- name: 10 nodes
+  committee_size: 10
+  duration_secs: 30
+  latency_min_ms: 50
+  latency_max_ms: 100
+  load_generator:
+    load: 100
+    transaction_size: 512
+    initial_delay: 0s
+
+- name: 13 nodes
+  committee_size: 13
+  duration_secs: 30
+  latency_min_ms: 50
+  latency_max_ms: 100
+  load_generator:
+    load: 100
+    transaction_size: 512
+    initial_delay: 0s
+
+- name: 16 nodes
+  committee_size: 16
+  duration_secs: 30
+  latency_min_ms: 50
+  latency_max_ms: 100
+  load_generator:
+    load: 100
+    transaction_size: 512
+    initial_delay: 0s

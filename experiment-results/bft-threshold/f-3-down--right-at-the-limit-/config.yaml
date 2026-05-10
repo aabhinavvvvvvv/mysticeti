@@ -1,0 +1,30 @@
+name: f=3 down (right at the limit)
+committee_size: 10
+latency_min_ms: 50
+latency_max_ms: 100
+topology: !partition
+- - 0
+  - 1
+  - 2
+- - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+duration_secs: 30
+rng_seed: 0
+replica_parameters:
+  dag:
+    round_timeout: null
+    max_block_size: 4194304
+    enable_synchronizer: false
+    fsync: false
+  consensus:
+    protocol: mysticeti
+    leader_count: 2
+load_generator:
+  load: 100
+  transaction_size: 512
+  initial_delay: 0s

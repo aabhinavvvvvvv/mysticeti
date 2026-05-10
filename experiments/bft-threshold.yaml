@@ -1,0 +1,64 @@
+# Experiment 2: BFT Threshold Demonstration
+# Shows exactly where the system breaks down.
+# With 10 nodes: quorum = floor(2*10/3) + 1 = 7 nodes needed.
+# Tolerance: f = floor((10-1)/3) = 3 faulty nodes.
+#
+# - 1 down  → 9 nodes remain → 9 > 7 → SHOULD COMMIT (well within tolerance)
+# - 3 down  → 7 nodes remain → 7 = 7 → SHOULD COMMIT (right at the limit)
+# - 4 down  → 6 nodes remain → 6 < 7 → SHOULD FAIL  (exceeds tolerance)
+#
+# Run with:
+#   cargo run --release --bin replica -- simulate \
+#     --config-path experiments/bft-threshold.yaml \
+#     --output-dir experiment-results/bft-threshold/
+
+- name: healthy (0 nodes down)
+  committee_size: 10
+  duration_secs: 30
+  latency_min_ms: 50
+  latency_max_ms: 100
+  load_generator:
+    load: 100
+    transaction_size: 512
+    initial_delay: 0s
+  topology: fullMesh
+
+- name: f=1 down (well within tolerance)
+  committee_size: 10
+  duration_secs: 30
+  latency_min_ms: 50
+  latency_max_ms: 100
+  load_generator:
+    load: 100
+    transaction_size: 512
+    initial_delay: 0s
+  topology:
+    oneDown: 0
+
+- name: f=3 down (right at the limit)
+  committee_size: 10
+  duration_secs: 30
+  latency_min_ms: 50
+  latency_max_ms: 100
+  load_generator:
+    load: 100
+    transaction_size: 512
+    initial_delay: 0s
+  topology:
+    partition:
+      - [0, 1, 2]
+      - [3, 4, 5, 6, 7, 8, 9]
+
+- name: f=4 down (exceeds tolerance - should fail)
+  committee_size: 10
+  duration_secs: 30
+  latency_min_ms: 50
+  latency_max_ms: 100
+  load_generator:
+    load: 100
+    transaction_size: 512
+    initial_delay: 0s
+  topology:
+    partition:
+      - [0, 1, 2, 3]
+      - [4, 5, 6, 7, 8, 9]

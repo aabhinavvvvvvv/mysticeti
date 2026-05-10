@@ -1,0 +1,151 @@
+# Experiment 5: Mysticeti vs Mahi-Mahi Under Degrading Network Conditions
+# Runs both protocols through progressively worse conditions:
+#   1. Normal network
+#   2. High latency (WAN)
+#   3. One node down
+#   4. Network partition (no quorum possible)
+#
+# Hypothesis: Mysticeti is faster under good conditions.
+# Mahi-Mahi degrades more gracefully under bad conditions.
+# This is the core research tradeoff between the two papers.
+#
+# Run with:
+#   cargo run --release --bin replica -- simulate \
+#     --config-path experiments/protocol-degradation.yaml \
+#     --output-dir experiment-results/protocol-degradation/
+
+# --- MYSTICETI ---
+
+- name: mysticeti - normal
+  committee_size: 7
+  duration_secs: 30
+  latency_min_ms: 50
+  latency_max_ms: 100
+  load_generator:
+    load: 100
+    transaction_size: 512
+    initial_delay: 0s
+  topology: fullMesh
+  replica_parameters:
+    consensus:
+      protocol: mysticeti
+      leader_count: 2
+
+- name: mysticeti - high latency
+  committee_size: 7
+  duration_secs: 30
+  latency_min_ms: 200
+  latency_max_ms: 400
+  load_generator:
+    load: 100
+    transaction_size: 512
+    initial_delay: 0s
+  topology: fullMesh
+  replica_parameters:
+    consensus:
+      protocol: mysticeti
+      leader_count: 2
+
+- name: mysticeti - one node down
+  committee_size: 7
+  duration_secs: 30
+  latency_min_ms: 50
+  latency_max_ms: 100
+  load_generator:
+    load: 100
+    transaction_size: 512
+    initial_delay: 0s
+  topology:
+    oneDown: 0
+  replica_parameters:
+    consensus:
+      protocol: mysticeti
+      leader_count: 2
+
+- name: mysticeti - partition (no quorum)
+  committee_size: 6
+  duration_secs: 30
+  latency_min_ms: 50
+  latency_max_ms: 100
+  load_generator:
+    load: 100
+    transaction_size: 512
+    initial_delay: 0s
+  topology:
+    partition:
+      - [0, 1, 2]
+      - [3, 4, 5]
+  replica_parameters:
+    consensus:
+      protocol: mysticeti
+      leader_count: 2
+
+# --- MAHI-MAHI ---
+
+- name: mahi-mahi - normal
+  committee_size: 7
+  duration_secs: 30
+  latency_min_ms: 50
+  latency_max_ms: 100
+  load_generator:
+    load: 100
+    transaction_size: 512
+    initial_delay: 0s
+  topology: fullMesh
+  replica_parameters:
+    consensus:
+      protocol: mahiMahi
+      leader_count: 2
+      wave_length: 4
+
+- name: mahi-mahi - high latency
+  committee_size: 7
+  duration_secs: 30
+  latency_min_ms: 200
+  latency_max_ms: 400
+  load_generator:
+    load: 100
+    transaction_size: 512
+    initial_delay: 0s
+  topology: fullMesh
+  replica_parameters:
+    consensus:
+      protocol: mahiMahi
+      leader_count: 2
+      wave_length: 4
+
+- name: mahi-mahi - one node down
+  committee_size: 7
+  duration_secs: 30
+  latency_min_ms: 50
+  latency_max_ms: 100
+  load_generator:
+    load: 100
+    transaction_size: 512
+    initial_delay: 0s
+  topology:
+    oneDown: 0
+  replica_parameters:
+    consensus:
+      protocol: mahiMahi
+      leader_count: 2
+      wave_length: 4
+
+- name: mahi-mahi - partition (no quorum)
+  committee_size: 6
+  duration_secs: 30
+  latency_min_ms: 50
+  latency_max_ms: 100
+  load_generator:
+    load: 100
+    transaction_size: 512
+    initial_delay: 0s
+  topology:
+    partition:
+      - [0, 1, 2]
+      - [3, 4, 5]
+  replica_parameters:
+    consensus:
+      protocol: mahiMahi
+      leader_count: 2
+      wave_length: 4

@@ -1,0 +1,145 @@
+# HELP benchmark_duration Duration of the benchmark
+# TYPE benchmark_duration counter
+benchmark_duration 29
+# HELP block_handler_cleanup_util block_handler_cleanup_util
+# TYPE block_handler_cleanup_util counter
+block_handler_cleanup_util 38
+# HELP block_store_cleanup_util block_store_cleanup_util
+# TYPE block_store_cleanup_util counter
+block_store_cleanup_util 91
+# HELP block_store_entries Entries in block store
+# TYPE block_store_entries counter
+block_store_entries 1983
+# HELP block_store_loaded_blocks Blocks loaded from WAL position
+# TYPE block_store_loaded_blocks counter
+block_store_loaded_blocks 0
+# HELP block_store_unloaded_blocks Blocks unloaded during cleanup
+# TYPE block_store_unloaded_blocks counter
+block_store_unloaded_blocks 709
+# HELP committed_leaders_total Committed leaders per authority
+# TYPE committed_leaders_total counter
+committed_leaders_total{authority="A",commit_type="direct-skip"} 92
+committed_leaders_total{authority="B",commit_type="direct-commit"} 93
+committed_leaders_total{authority="C",commit_type="direct-commit"} 94
+committed_leaders_total{authority="D",commit_type="direct-commit"} 94
+committed_leaders_total{authority="E",commit_type="direct-commit"} 94
+committed_leaders_total{authority="F",commit_type="direct-commit"} 94
+committed_leaders_total{authority="G",commit_type="direct-commit"} 93
+# HELP core_lock_dequeued Dequeued core requests
+# TYPE core_lock_dequeued counter
+core_lock_dequeued 0
+# HELP core_lock_enqueued Enqueued core requests
+# TYPE core_lock_enqueued counter
+core_lock_enqueued 0
+# HELP core_lock_util Utilization of core write lock
+# TYPE core_lock_util counter
+core_lock_util 0
+# HELP global_in_memory_blocks Number of blocks loaded in memory
+# TYPE global_in_memory_blocks gauge
+global_in_memory_blocks 0
+# HELP global_in_memory_blocks_bytes Total size of blocks in memory
+# TYPE global_in_memory_blocks_bytes gauge
+global_in_memory_blocks_bytes 0
+# HELP inter_block_latency_s Inter-block latency (s)
+# TYPE inter_block_latency_s histogram
+inter_block_latency_s_bucket{le="0.1"} 0
+inter_block_latency_s_bucket{le="0.25"} 50
+inter_block_latency_s_bucket{le="0.5"} 2950
+inter_block_latency_s_bucket{le="0.75"} 2950
+inter_block_latency_s_bucket{le="1"} 2950
+inter_block_latency_s_bucket{le="1.25"} 2950
+inter_block_latency_s_bucket{le="1.5"} 2950
+inter_block_latency_s_bucket{le="1.75"} 2950
+inter_block_latency_s_bucket{le="2"} 2950
+inter_block_latency_s_bucket{le="2.5"} 2950
+inter_block_latency_s_bucket{le="3"} 2950
+inter_block_latency_s_bucket{le="4"} 2950
+inter_block_latency_s_bucket{le="5"} 2950
+inter_block_latency_s_bucket{le="10"} 2950
+inter_block_latency_s_bucket{le="20"} 2950
+inter_block_latency_s_bucket{le="30"} 2950
+inter_block_latency_s_bucket{le="60"} 2950
+inter_block_latency_s_bucket{le="90"} 2950
+inter_block_latency_s_bucket{le="+Inf"} 2950
+inter_block_latency_s_sum 1014.2388830900056
+inter_block_latency_s_count 2950
+# HELP latency_s End-to-end transaction commit latency (s)
+# TYPE latency_s histogram
+latency_s_bucket{le="0.1"} 0
+latency_s_bucket{le="0.25"} 20
+latency_s_bucket{le="0.5"} 17260
+latency_s_bucket{le="0.75"} 17720
+latency_s_bucket{le="1"} 17720
+latency_s_bucket{le="1.25"} 17720
+latency_s_bucket{le="1.5"} 17720
+latency_s_bucket{le="1.75"} 17720
+latency_s_bucket{le="2"} 17720
+latency_s_bucket{le="2.5"} 17720
+latency_s_bucket{le="3"} 17720
+latency_s_bucket{le="4"} 17720
+latency_s_bucket{le="5"} 17720
+latency_s_bucket{le="10"} 17720
+latency_s_bucket{le="20"} 17720
+latency_s_bucket{le="30"} 17720
+latency_s_bucket{le="60"} 17720
+latency_s_bucket{le="90"} 17720
+latency_s_bucket{le="+Inf"} 17720
+latency_s_sum 6901.3742803101195
+latency_s_count 17720
+# HELP latency_squared_s Square of end-to-end transaction commit latency (s)
+# TYPE latency_squared_s counter
+latency_squared_s 2747.345768569466
+# HELP leader_timeout_total Total number of leader timeouts
+# TYPE leader_timeout_total counter
+leader_timeout_total 1
+# HELP missing_blocks Missing blocks per authority
+# TYPE missing_blocks gauge
+missing_blocks{authority="A"} 0
+missing_blocks{authority="B"} 0
+missing_blocks{authority="C"} 0
+missing_blocks{authority="D"} 0
+missing_blocks{authority="E"} 0
+missing_blocks{authority="F"} 0
+missing_blocks{authority="G"} 0
+# HELP proposed_block_size_bytes proposed_block_size_bytes
+# TYPE proposed_block_size_bytes gauge
+proposed_block_size_bytes{v="count"} 330
+proposed_block_size_bytes{v="p50"} 5632
+proposed_block_size_bytes{v="p90"} 5688
+proposed_block_size_bytes{v="p99"} 10888
+proposed_block_size_bytes{v="sum"} 1702792
+# HELP proposed_block_transaction_count proposed_block_transaction_count
+# TYPE proposed_block_transaction_count gauge
+proposed_block_transaction_count{v="count"} 330
+proposed_block_transaction_count{v="p50"} 10
+proposed_block_transaction_count{v="p90"} 10
+proposed_block_transaction_count{v="p99"} 20
+proposed_block_transaction_count{v="sum"} 2990
+# HELP proposed_block_vote_count proposed_block_vote_count
+# TYPE proposed_block_vote_count gauge
+proposed_block_vote_count{v="count"} 330
+proposed_block_vote_count{v="p50"} 0
+proposed_block_vote_count{v="p90"} 0
+proposed_block_vote_count{v="p99"} 0
+proposed_block_vote_count{v="sum"} 0
+# HELP submitted_transactions Total submitted transactions
+# TYPE submitted_transactions counter
+submitted_transactions 0
+# HELP transaction_committed_latency transaction_committed_latency
+# TYPE transaction_committed_latency gauge
+transaction_committed_latency{v="count"} 2950
+transaction_committed_latency{v="p50"} 353048
+transaction_committed_latency{v="p90"} 391552
+transaction_committed_latency{v="p99"} 468327
+transaction_committed_latency{v="sum"} 1014238883
+# HELP utilization_timer Utilization timer
+# TYPE utilization_timer counter
+utilization_timer{proc="BlockHandler::handle_blocks"} 36
+utilization_timer{proc="Core::add_blocks"} 42265
+utilization_timer{proc="Core::run_block_handler"} 11381
+utilization_timer{proc="Core::try_new_block"} 13113
+utilization_timer{proc="Syncer::add_blocks"} 140280
+utilization_timer{proc="Syncer::try_new_block"} 95997
+# HELP wal_mappings Mappings retained by the WAL
+# TYPE wal_mappings gauge
+wal_mappings 0
